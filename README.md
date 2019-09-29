@@ -1,4 +1,6 @@
-# mdm-cart
+# Test technique Maison du monde
+Project created for Maison du monde.
+Cart page with vuejs and bootstrap-vue
 
 ## Project setup
 ```
@@ -13,16 +15,6 @@ npm run serve
 ### Compiles and minifies for production
 ```
 npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
 ```
 
 ### Customize configuration

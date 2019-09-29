@@ -19,6 +19,7 @@
               :products="cart.items"
               @addOnItem="incrementQuantityCartItem"
               @removeOneItem="decrementQuantityCartItem"
+              @removeCartItem="removeCartItem"
               class="mb-3"
             />
             <div class="d-flex bg-dark p-2 text-light mb-3">

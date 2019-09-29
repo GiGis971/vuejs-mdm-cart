@@ -12,6 +12,7 @@
             <th>Reference</th>
             <th>Quantités</th>
             <th>Prix</th>
+            <th></th>
           </tr>
         </thead>
         <tbody v-for="(product, i) in products" :key="i" class="align-middle">
@@ -46,6 +47,16 @@
             <td class="align-middle">
               {{ parseFloat(product.price).toFixed(2) }}&nbsp;€
             </td>
+            <td class="align-middle">
+              <b-button
+                variant="outline-dark"
+                @click="removeCartItem(i)"
+                title="supprimer"
+                v-b-tooltip
+              >
+                X
+              </b-button>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -76,6 +87,9 @@ export default {
     },
     removeOneItem(item) {
       this.$emit("removeOneItem", item);
+    },
+    removeCartItem(item) {
+      this.$emit("removeCartItem", item);
     }
   }
 };

@@ -11,7 +11,10 @@
       </b-container>
       <b-container>
         <b-row>
-          <b-col cols="8">
+          <b-col lg="4" sm="12" order-md="2">
+            <MdmProductsRelated :products="products" @selected="addToCart" />
+          </b-col>
+          <b-col lg="8" sm="12" order-md="1">
             <MdmCart
               :products="cart.items"
               @addOnItem="incrementQuantityCartItem"
@@ -24,7 +27,7 @@
                 <strong>{{ parseFloat(totalCart).toFixed(2) }} €</strong>
               </div>
             </div>
-            <div class="d-flex">
+            <div class="d-flex mb-5">
               <b-button
                 variant="outline-warning"
                 class="ml-auto mr-3 text-dark"
@@ -34,9 +37,6 @@
               </b-button>
               <b-button variant="primary">Valider le panier</b-button>
             </div>
-          </b-col>
-          <b-col cols="4">
-            <MdmProductsRelated :products="products" @selected="addToCart" />
           </b-col>
         </b-row>
       </b-container>

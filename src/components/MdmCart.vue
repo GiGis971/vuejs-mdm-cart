@@ -4,10 +4,10 @@
       <h2 class="display-5 text-center mt-1">Votre panier est vide</h2>
     </div>
     <div v-else>
-      <table class="table thead-dark">
+      <table class="table thead-dark table-responsive">
         <thead class="thead-dark">
           <tr>
-            <th>Image</th>
+            <th class="w-25 d-none d-md-table-cell">Image</th>
             <th>Produit</th>
             <th>Reference</th>
             <th>Quantités</th>
@@ -16,7 +16,7 @@
         </thead>
         <tbody v-for="(product, i) in products" :key="i" class="align-middle">
           <tr>
-            <td class="w-25">
+            <td class="w-25 d-none d-md-table-cell">
               <img
                 :src="product.image"
                 class="w-100"

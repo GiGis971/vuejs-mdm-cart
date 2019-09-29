@@ -16,9 +16,9 @@
               {{ product.title.name }} - {{ product.title.details }}
             </strong>
             <div class="text-secondary font-weight-bold mb-2">
-              {{ product.price }} €
+              {{ parseFloat(product.price).toFixed(2) }} €
             </div>
-            <b-button @click="addToCart(products)">
+            <b-button @click="addToCart(product)">
               <small>Ajouter au panier</small>
             </b-button>
           </b-col>
@@ -37,9 +37,14 @@ export default {
       type: Array
     }
   },
+  data() {
+    return {
+      quantity: 1
+    };
+  },
   methods: {
     addToCart(payload) {
-      this.$emit("selected", { ...payload });
+      this.$emit("selected", { ...payload, quantity: 1 });
     }
   }
 };

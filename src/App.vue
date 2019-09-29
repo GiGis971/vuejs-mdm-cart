@@ -12,7 +12,12 @@
       <b-container>
         <b-row>
           <b-col cols="8">
-            <MdmCart :products="cart.items" class="mb-3" />
+            <MdmCart
+              :products="cart.items"
+              @addOnItem="incrementQuantityCartItem"
+              @removeOneItem="decrementQuantityCartItem"
+              class="mb-3"
+            />
             <div class="d-flex">
               <b-button
                 variant="outline-warning"
@@ -63,7 +68,26 @@ export default {
   },
   methods: {
     addToCart(payload) {
-      this.cart.items.push(payload);
+      const cartItem = this.cart.items.find(item => payload.ref === item.ref);
+      cartItem
+        ? this.incrementQuantityCartItem(cartItem)
+        : this.cart.items.push(payload);
+    },
+    decrementQuantityCartItem(item) {
+      item.quantity--;
+      if (item.quantity === 0) this.removeCartItem(item);
+    },
+    incrementQuantityCartItem(item) {
+      item.quantity++;
+    },
+    removeCartItem(item) {
+      const index = this.cart.items.findIndex(
+        product => product.ref === item.ref
+      );
+      this.cart.items.splice(index, 1);
+    },
+    isAlreadyInCart(payload) {
+      return !!this.cart.items.find(item => payload.ref === item.ref);
     }
   }
 };

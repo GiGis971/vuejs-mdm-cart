@@ -18,8 +18,9 @@
             <div class="text-secondary font-weight-bold mb-2">
               {{ product.price }} €
             </div>
-
-            <b-button><small>Ajouter au panier</small></b-button>
+            <b-button @click="addToCart(products)">
+              <small>Ajouter au panier</small>
+            </b-button>
           </b-col>
         </b-row>
       </b-container>
@@ -34,6 +35,11 @@ export default {
     products: {
       required: true,
       type: Array
+    }
+  },
+  methods: {
+    addToCart(payload) {
+      this.$emit("selected", { ...payload });
     }
   }
 };

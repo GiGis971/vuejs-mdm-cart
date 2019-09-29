@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <MdmNavBar />
+    <MdmNavBar :total-cart-items="totalItem" />
     <section id="mdm-cart" class="my-5">
       <b-container>
         <b-row>
@@ -12,10 +12,20 @@
       <b-container>
         <b-row>
           <b-col cols="8">
-            <MdmCart :products="cart.items" />
+            <MdmCart :products="cart.items" class="mb-3" />
+            <div class="d-flex">
+              <b-button
+                variant="outline-warning"
+                class="ml-auto mr-3 text-dark"
+                @click="cart.items = []"
+              >
+                Tout supprimer
+              </b-button>
+              <b-button variant="primary">Valider le panier</b-button>
+            </div>
           </b-col>
           <b-col cols="4">
-            <MdmProductsRelated :products="products" />
+            <MdmProductsRelated :products="products" @selected="addToCart" />
           </b-col>
         </b-row>
       </b-container>
@@ -43,8 +53,18 @@ export default {
       }
     };
   },
+  computed: {
+    totalItem() {
+      return this.cart.items.length;
+    }
+  },
   mounted() {
     this.products = require("./api/Products");
+  },
+  methods: {
+    addToCart(payload) {
+      this.cart.items.push(payload);
+    }
   }
 };
 </script>

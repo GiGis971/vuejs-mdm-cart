@@ -66,17 +66,17 @@ export default {
   },
   computed: {
     totalItem() {
-      return this.cart.items.length;
+      return this.cart.items.length > 0
+        ? this.cart.items.reduce((total, item) => item.quantity + total, 0)
+        : 0;
     },
     totalCart() {
-      const total =
-        this.cart.items.length > 0
-          ? this.cart.items.reduce(
-              (total, item) => item.price * item.quantity + total,
-              0
-            )
-          : 0;
-      return total;
+      return this.cart.items.length > 0
+        ? this.cart.items.reduce(
+            (total, item) => item.price * item.quantity + total,
+            0
+          )
+        : 0;
     }
   },
   mounted() {

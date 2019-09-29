@@ -7,7 +7,7 @@
           Github
         </b-nav-item>
         <b-nav-item href="/" disabled>
-          Panier <b-badge variant="success">{{ totalCartItems }}</b-badge>
+          Panier <b-badge variant="success">{{ totalCartItems }} </b-badge>
         </b-nav-item>
       </b-navbar-nav>
     </b-navbar>

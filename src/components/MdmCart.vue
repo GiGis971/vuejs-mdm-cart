@@ -1,7 +1,7 @@
 <template>
   <div class="py-3 px-2 pb-0 shadow border">
     <div v-if="hasProduct">
-      <h2>Votre panier est vide</h2>
+      <h2 class="display-5 text-center mt-1">Votre panier est vide</h2>
     </div>
     <div v-else>
       <table class="table thead-dark">

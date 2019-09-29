@@ -18,6 +18,12 @@
               @removeOneItem="decrementQuantityCartItem"
               class="mb-3"
             />
+            <div class="d-flex bg-dark p-2 text-light mb-3">
+              <div><strong>Total: </strong></div>
+              <div class="ml-auto">
+                <strong>{{ parseFloat(totalCart).toFixed(2) }} €</strong>
+              </div>
+            </div>
             <div class="d-flex">
               <b-button
                 variant="outline-warning"
@@ -61,6 +67,16 @@ export default {
   computed: {
     totalItem() {
       return this.cart.items.length;
+    },
+    totalCart() {
+      const total =
+        this.cart.items.length > 0
+          ? this.cart.items.reduce(
+              (total, item) => item.price * item.quantity + total,
+              0
+            )
+          : 0;
+      return total;
     }
   },
   mounted() {
@@ -85,9 +101,6 @@ export default {
         product => product.ref === item.ref
       );
       this.cart.items.splice(index, 1);
-    },
-    isAlreadyInCart(payload) {
-      return !!this.cart.items.find(item => payload.ref === item.ref);
     }
   }
 };
